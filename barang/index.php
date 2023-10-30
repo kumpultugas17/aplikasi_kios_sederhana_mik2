@@ -52,10 +52,16 @@
    <div class="container">
       <div class="row mt-3">
          <div class="col-12">
-            <div class="alert alert-primary py-2">
-               DATA BARANG
-            </div>
-            <a href="" class="btn btn-primary btn-sm float-end mb-2">Tambah Data</a>
+            <?php if (isset($_GET['alert']) &&  isset($_GET['alert']) == 1) { ?>
+               <div class="alert alert-success py-2">
+                  Data Berhasil diproses!
+               </div>
+            <?php } else { ?>
+               <div class="alert alert-primary py-2">
+                  DATA BARANG
+               </div>
+            <?php } ?>
+            <a href="create.php" class="btn btn-primary btn-sm float-end mb-2">Tambah Data</a>
             <table class="table table-stripe table-hover">
                <thead class="table-primary">
                   <tr>
@@ -85,8 +91,8 @@
                         <td><?= $data['stok']; ?></td>
                         <td><?= $data['harga']; ?></td>
                         <td>
-                           <a href="" class="btn btn-sm btn-warning">Edit</a>
-                           <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                           <a href="edit.php?id=<?= $data['id_barang'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                           <a href="delete.php?id=<?= $data['id_barang'] ?>" class="btn btn-sm btn-danger">Hapus</a>
                         </td>
                      </tr>
                   <?php
