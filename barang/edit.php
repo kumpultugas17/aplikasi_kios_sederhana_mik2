@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,29 +32,20 @@ if (isset($_GET['id'])) {
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="../transaksi/index.php">Transaksi</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              Data Master
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="index.php">Barang</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex" role="search">
+          <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -95,7 +86,7 @@ if (isset($_GET['id'])) {
               <div class="mb-3 row">
                 <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="satuan" id="satuan" value="<?= $result['satuan'] ?>g">
+                  <input type="text" class="form-control" name="satuan" id="satuan" value="<?= $result['satuan'] ?>">
                 </div>
               </div>
               <div class="mb-3 row">
