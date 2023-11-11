@@ -47,6 +47,10 @@
                <div class="alert alert-success fw-bold py-2">
                   Data Berhasil diproses!
                </div>
+            <?php } elseif (isset($_GET['alert']) &&  isset($_GET['alert']) == 0) { ?>
+               <div class="alert alert-danger fw-bold py-2">
+                  Data Gagal diproses!
+               </div>
             <?php } else { ?>
                <div class="alert alert-primary fw-bold py-2">
                   DATA TRANSAKSI
@@ -79,6 +83,8 @@
                   $query = $conn->query("SELECT * FROM transaksi t INNER JOIN barang b ON t.barang_id = b.id_barang ORDER BY tgl_transaksi DESC");
                   foreach ($query as $data) :
                      $total = $data['harga'] * $data['jumlah'];
+                     $gt[] = $total;
+                     $grand_total = array_sum($gt);
                   ?>
                      <tr>
                         <td><?= $no++; ?></td>
@@ -90,12 +96,16 @@
                         <td><?= $data['jumlah']; ?></td>
                         <td><?= "Rp. " . number_format($total, 0, ',', '.'); ?></td>
                         <td>
-                           <a href="delete.php?id=<?= $data['id_transaksi'] ?>" class="btn btn-sm btn-danger">Hapus</a>
+                           <a href="delete.php?id=<?= $data['id_transaksi'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah data akan dihapus?')">Hapus</a>
                         </td>
                      </tr>
                   <?php
                   endforeach
                   ?>
+                  <tr>
+                     <td colspan="7" class="text-end">Grand Total </td>
+                     <td colspan="2">Rp. <?= number_format($grand_total, 0, ',', '.') ?></td>
+                  </tr>
                </tbody>
             </table>
          </div>
@@ -125,7 +135,6 @@
                   <select name="nama_barang" id="nama_barang" class="form-select">
                      <option selected disabled>Pilih Barang</option>
                      <?php
-                     require_once "../config.php";
                      $query = $conn->query("SELECT * FROM barang");
                      foreach ($query as $data) :
                      ?>
