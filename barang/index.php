@@ -32,6 +32,9 @@
                <li class="nav-item">
                   <a class="nav-link" href="../transaksi/index.php">Transaksi</a>
                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="../laporan/index.php">Laporan Penjualan</a>
+               </li>
             </ul>
             <div class="d-flex" role="search">
                <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
