@@ -23,7 +23,7 @@ require_once('../config.php');
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,14 +34,14 @@ require_once('../config.php');
                   </ul>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="index.php">Transaksi</a>
+                  <a class="nav-link" href="../transaksi/index.php">Transaksi</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="../laporan/index.php">Laporan Penjualan</a>
+                  <a class="nav-link" href="index.php">Laporan Penjualan</a>
                </li>
             </ul>
             <div class="d-flex" role="search">
-               <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+               <a href="../logout.php" class="btn btn-outline-light btn-sm">Logout</a>
             </div>
          </div>
       </div>
@@ -56,8 +56,8 @@ require_once('../config.php');
 
             <div class="card">
                <div class="card-body">
-                  <form method="get" class="row row-cols-lg-auto g-3 align-items-center mb-4">
-                     <div class="col-12">
+                  <form method="get" class="row g-3 align-items-center mb-4">
+                     <div class="col">
                         <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
                         <div class="input-group">
                            <div class="input-group-text">Tanggal Penjualan </div>
@@ -67,13 +67,17 @@ require_once('../config.php');
                               $tanggal = $conn->query("SELECT DISTINCT tgl_transaksi FROM transaksi");
                               foreach ($tanggal as $tgl) :
                               ?>
-                                 <option value="<?= date('Y-m-d', strtotime($tgl['tgl_transaksi'])) ?>" <?= date('Y-m-d', strtotime($tgl['tgl_transaksi'])) == $_GET['cari_tgl'] ? 'selected' : '' ?>><?= date('d-m-Y', strtotime($tgl['tgl_transaksi'])) ?></option>
+                                 <option value="<?= date('Y-m-d', strtotime($tgl['tgl_transaksi'])) ?>" <?= date('Y-m-d', strtotime($tgl['tgl_transaksi'])) == @$_GET['cari_tgl'] ? 'selected' : '' ?>><?= date('d-m-Y', strtotime($tgl['tgl_transaksi'])) ?></option>
                               <?php endforeach ?>
                            </select>
                         </div>
                      </div>
-                     <div class="col-12">
+                     <div class="col-8">
                         <button type="submit" class="btn btn-primary">Cari</button>
+                        <?php if (isset($_GET['cari_tgl'])) { ?>
+                           <a href="export_pdf.php?cari_tgl=<?= $_GET['cari_tgl'] ?>" target="_blank" class="btn btn-danger float-end">Print PDF</a>
+                           <a href="export_excel.php?cari_tgl=<?= $_GET['cari_tgl'] ?>" target="_blank" class="btn btn-success float-end me-3">Export Excel</a>
+                        <?php } ?>
                      </div>
                   </form>
                   <?php if (isset($_GET['cari_tgl'])) { ?>

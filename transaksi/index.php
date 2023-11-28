@@ -19,7 +19,7 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +37,7 @@
                </li>
             </ul>
             <div class="d-flex" role="search">
-               <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+               <a href="../logout.php" class="btn btn-outline-light btn-sm">Logout</a>
             </div>
          </div>
       </div>
@@ -107,7 +107,7 @@
                   ?>
                   <tr>
                      <td colspan="7" class="text-end">Grand Total </td>
-                     <td colspan="2">Rp. <?= number_format($grand_total, 0, ',', '.') ?></td>
+                     <td colspan="2">Rp. <?= number_format(@$grand_total, 0, ',', '.') ?></td>
                   </tr>
                </tbody>
             </table>
@@ -138,10 +138,10 @@
                   <select name="nama_barang" id="nama_barang" class="form-select">
                      <option selected disabled>Pilih Barang</option>
                      <?php
-                     $query = $conn->query("SELECT * FROM barang");
-                     foreach ($query as $data) :
+                     $barang = $conn->query("SELECT * FROM barang");
+                     foreach ($barang as $brg) :
                      ?>
-                        <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                        <option value="<?= $brg['id_barang'] ?>"><?= $brg['nama_barang'] ?></option>
                      <?php
                      endforeach
                      ?>
